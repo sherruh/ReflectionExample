@@ -32,4 +32,13 @@ public class Car {
     public void setVinCode(int vinCode) {
         this.vinCode = vinCode;
     }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "model='" + model + '\'' +
+                ", mark='" + mark + '\'' +
+                ", vinCode=" + vinCode +
+                '}';
+    }
 }

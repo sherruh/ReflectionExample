@@ -1,12 +1,23 @@
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
+import java.lang.reflect.*;
 
 public class Main {
 
     public static void main(String[] args) {
         checkClass(Car.class);
+        createObjectOfClass(Car.class);
+    }
+
+    private static void createObjectOfClass(Class myClass) {
+        try {
+            Constructor constructor=myClass.getDeclaredConstructor(String.class,String.class,int.class);
+            Car car=(Car)constructor.newInstance("BMW","X5",123456789);
+            System.out.println(car);
+            Method method=myClass.getMethod("getVinCode");
+            int vinCode=(int)method.invoke(car);
+            System.out.println("Vincode: "+vinCode);
+        } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void checkClass(Class myClass){
